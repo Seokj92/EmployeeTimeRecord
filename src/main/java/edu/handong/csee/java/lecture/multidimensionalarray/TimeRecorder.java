@@ -16,9 +16,8 @@ public class TimeRecorder {
 		
 		myTimeRecoder.getData();
 		
-		myTimeRecoder.computeTotalPerWeekDay();
-		myTimeRecoder.computeTotalPerEmployee();
-		
+		myTimeRecoder.computeTotals();
+				
 		myTimeRecoder.printResults();
 
 	}
@@ -28,7 +27,7 @@ public class TimeRecorder {
 		Scanner myScanner = new Scanner(System.in);
 		
 		System.out.print("How many employees do you want" +
-								"to process for their work time? ");
+								" to process for their work time? ");
 		
 		int numOfEmployees = myScanner.nextInt();
 		
@@ -49,7 +48,9 @@ public class TimeRecorder {
 		myScanner.close();	
 	}
 	
-	public void computeTotalPerWeekDay() {
+	public void computeTotals() {
+		
+		weekHours = new int[hours.length];
 			
 		for(WeekDays currentDay:WeekDays.values()) {
 			
@@ -60,11 +61,6 @@ public class TimeRecorder {
 															+ hours[employeeCount][currentDay.ordinal()];
 			}
 		}
-	}
-	
-	public void computeTotalPerEmployee() {
-		
-		weekHours = new int[hours.length];
 		
 		for(int employeeCount=0; employeeCount < hours.length; employeeCount++) {
 			
@@ -72,11 +68,12 @@ public class TimeRecorder {
 		
 			for(WeekDays currentDay:WeekDays.values()) {
 				weekHours[employeeCount] = weekHours[employeeCount] 
-															+ hours[employeeCount][currentDay.ordinal()];
+						+ hours[employeeCount][currentDay.ordinal()];
 			}
 		}
-		
 	}
+	
+	
 	
 	public void printResults() {
 		
